@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import "./sumit.css";
 
 const LandingPage = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const [isNewUser, setIsNewUser] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -26,8 +26,8 @@ const LandingPage = () => {
       if (response.ok) {
         console.log("Login Successful", data);
         localStorage.setItem("token", data.token);
-      document.cookie = `Cookie=${data.token}; path=/`;
-        navigate('/home'); 
+        document.cookie = `Cookie=${data.token}; path=/`;
+        navigate('/home');
       } else {
         console.error("Login Error", data.error);
       }
@@ -76,7 +76,7 @@ const LandingPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="welcome-title">Welcome to the Bank User Portal sumit </h2>
+          <h2 className="welcome-title">Welcome to the Bank User Portal </h2>
           <p className="welcome-text">
             Manage your account information, check balances, and explore services
             with ease.

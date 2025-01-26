@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 
 const notify = (message) => toast(message);
@@ -13,26 +14,31 @@ const AdminDashboard = () => {
     accountName: '',
     accountNumber: '',
   });
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchBankData = async () => {
-      const token = localStorage.getItem('token');
-      try {
-        const response = await axios.get('https://bank-user.onrender.com/admin', {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setBankData(response.data);
-      } catch (error) {
-        notify('Error fetching bank data');
-        console.error('Error fetching bank data:', error);
-      }
-    };
+    const token = localStorage.getItem('authToken'); // Check for the correct token key
+    if (!token) {
+      navigate('/admin/login'); // Redirect to login if not authenticated
+    } else {
+      const fetchBankData = async () => {
+        try {
+          const response = await axios.get('https://bank-user.onrender.com/admin', {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          setBankData(response.data);
+        } catch (error) {
+          notify('Error fetching bank data');
+          console.error('Error fetching bank data:', error);
+        }
+      };
 
-    fetchBankData();
-  }, []);
+      fetchBankData();
+    }
+  }, [navigate]);
 
   const handleSearch = async () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('authToken'); // Check for the correct token key
     try {
       const response = await axios.get('https://bank-user.onrender.com/admin/search', {
         headers: { Authorization: `Bearer ${token}` },
@@ -46,14 +52,14 @@ const AdminDashboard = () => {
   };
 
   const handleLogout = async () => {
-    const token = localStorage.getItem('token'); // Retrieve the token from localStorage
+    const token = localStorage.getItem('authToken'); // Retrieve the token from localStorage
     try {
       await axios.post('https://bank-user.onrender.com/admin/logout', {}, {
         headers: {
           Authorization: `Bearer ${token}`, // Include the token in the Authorization header
         }
       });
-      localStorage.removeItem('token'); // Clear the token from localStorage
+      localStorage.removeItem('authToken'); // Clear the token from localStorage
       window.location.href = '/admin/login'; // Redirect to the admin login page
     } catch (error) {
       console.error('Error logging out:', error);
