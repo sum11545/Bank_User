@@ -7,7 +7,7 @@ const userRoute = require("./routes/userRoute");
 const adminRoute = require("./routes/adminRoute");
 const cors = require("cors");
 
-app.use(cors({ origin: "https://bank-user.onrender.com", credentials: true }));
+app.use(cors());
 app.use(express.json());
 app.use(cookieparser());
 app.use("/", userRoute);
