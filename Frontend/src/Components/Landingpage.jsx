@@ -76,7 +76,7 @@ const LandingPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="welcome-title">Welcome to the Bank User Portal</h2>
+          <h2 className="welcome-title">Welcome to the Bank User Portal sumit </h2>
           <p className="welcome-text">
             Manage your account information, check balances, and explore services
             with ease.
