@@ -22,7 +22,7 @@ const Homepage = () => {
     const fetchAccounts = async () => {
       const token = localStorage.getItem('token');
       try {
-        const response = await axios.get('http://localhost:3000/accounts', {
+        const response = await axios.get('https://bank-user.onrender.com/accounts', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setAccounts(response.data);
@@ -41,7 +41,7 @@ const Homepage = () => {
     console.log('Token:', token);
   
     try {
-      const response = await axios.post('http://localhost:3000/add', {
+      const response = await axios.post('https://bank-user.onrender.com/add', {
         accountNumber,
         accountName,
         bankName,
@@ -76,7 +76,7 @@ const Homepage = () => {
     const token = localStorage.getItem('token'); // Retrieve the token from localStorage
     try {
       const response = await axios.put(
-        `http://localhost:3000/edit/${accountId}`, // Include accountId in the URL
+        `https://bank-user.onrender.com/edit/${accountId}`, // Include accountId in the URL
         {
           accountNumber,
           accountName,
@@ -111,7 +111,7 @@ const Homepage = () => {
   const handleDeleteAccount = async (accountId) => {
     try {
       const token = localStorage.getItem('token'); // Retrieve the token from localStorage
-      await axios.delete(`http://localhost:3000/delete/${accountId}`, {
+      await axios.delete(`https://bank-user.onrender.com/delete/${accountId}`, {
         headers: {
           Authorization: `Bearer ${token}`, // Include the token in the Authorization header
         }
@@ -128,7 +128,7 @@ const Homepage = () => {
   const handleLogout = async () => {
     const token = localStorage.getItem('token'); // Retrieve the token from localStorage
     try {
-      await axios.post('http://localhost:3000/logout', {}, {
+      await axios.post('https://bank-user.onrender.com/logout', {}, {
         headers: {
           Authorization: `Bearer ${token}`, // Include the token in the Authorization header
         }

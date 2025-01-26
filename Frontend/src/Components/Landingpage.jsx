@@ -14,7 +14,7 @@ const LandingPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/login", {
+      const response = await fetch("https://bank-user.onrender.com/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const LandingPage = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/register", {
+      const response = await fetch("https://bank-user.onrender.com/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

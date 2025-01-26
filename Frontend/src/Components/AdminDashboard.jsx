@@ -18,7 +18,7 @@ const AdminDashboard = () => {
     const fetchBankData = async () => {
       const token = localStorage.getItem('token');
       try {
-        const response = await axios.get('http://localhost:3000/admin', {
+        const response = await axios.get('https://bank-user.onrender.com/admin', {
           headers: { Authorization: `Bearer ${token}` },
         });
         setBankData(response.data);
@@ -34,7 +34,7 @@ const AdminDashboard = () => {
   const handleSearch = async () => {
     const token = localStorage.getItem('token');
     try {
-      const response = await axios.get('http://localhost:3000/admin/search', {
+      const response = await axios.get('https://bank-user.onrender.com/admin/search', {
         headers: { Authorization: `Bearer ${token}` },
         params: searchParams,
       });
@@ -48,7 +48,7 @@ const AdminDashboard = () => {
   const handleLogout = async () => {
     const token = localStorage.getItem('token'); // Retrieve the token from localStorage
     try {
-      await axios.post('http://localhost:3000/admin/logout', {}, {
+      await axios.post('https://bank-user.onrender.com/admin/logout', {}, {
         headers: {
           Authorization: `Bearer ${token}`, // Include the token in the Authorization header
         }
